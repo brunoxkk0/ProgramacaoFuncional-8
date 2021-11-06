@@ -8,6 +8,7 @@ const contentOfSource = contentOfTag(R.__, 'source');
 const contentOfAdded = contentOfTag(R.__, 'added');
 const contentOfUpdated = contentOfTag(R.__, 'lastupdated');
 const contentOfID = contentOfTag(R.__, 'id');
+
 const getGitHubProject = xmlNode => contentOfSource(xmlNode).replace('https://github.com/', '');
 
 const elementsToArray = nodes => {
@@ -34,10 +35,30 @@ const isValid = R.curry(
     }
 );
 
+const newIsValid = R.curry(
+    (app, addedAfterYear, updatedAfterYear) => {
+        if (!contentOfSource(app).includes('github.com'))
+            return false;
+
+        const addedDate = new Date(contentOfAdded(app));
+        if (addedDate.getFullYear() < addedAfterYear)
+            return false;
+
+        const lastUpdatedDate = new Date(contentOfUpdated(app));
+        if (lastUpdatedDate.getFullYear() != updatedAfterYear)
+            return false;
+
+        return true;
+    }
+);
+
 module.exports = {
+    newIsValid,
     isValid,
     elementsToArray,
     getGitHubProject,
     contentOfSource,
-    contentOfID
+    contentOfID,
+    contentOfAdded,
+    contentOfUpdated
 };
