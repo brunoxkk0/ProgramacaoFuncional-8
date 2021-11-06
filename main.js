@@ -14,12 +14,26 @@ const addedApps = elementsToArray(document.getElementsByTagName('application'))
     .map(getGitHubProject);
 
 console.log(addedApps.join('\n'));
- 
+
 // (Exercício 1) Identifique todas as declarações de funções neste projeto
     // Adicione um comentário identificando-as
+/*
+    isValid()
+    elementsToArray()
+    getGithubProject()
+    isAddedAfter2018AndUpdatedAfter2019()
+    contentOfTag()
+    contentOfSource()
+    contentOfAdded()
+    contentOfUpdated()
+    contentOfID()
+    getGitHubProject()
+ */
+
 
 // (Exercício 2) Identifique quais funções no projeto possuem efeitos colaterais (side-effects)
     // Adicione um comentário identificando-as
+
 
 // (Exercício 3) Identifique quais funções são curried
     // Adicione um comentário identificando-as
